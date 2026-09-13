@@ -6,6 +6,11 @@
 //url ?posts=show&id=x
 // router posts
 
+if (isset($_GET['posts'])):
+    include_once '../app/routers/posts.php';
+
+
+
 
 
 // ROUTE PAR DÉFAUT: Les 10 derniers posts
@@ -13,6 +18,7 @@
 // URL: ?
 // CTRL: postsController
 // ACTION: index
-
-include_once '../app/controllers/postsController.php';
-\App\Controllers\PostsController\indexAction($connexion);
+else:
+    include_once '../app/controllers/postsController.php';
+    \App\Controllers\PostsController\indexAction($connexion);
+endif;
