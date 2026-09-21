@@ -26,10 +26,15 @@ function LoginAction(PDO $connexion, array $userData)
 
 
     //si y'en a pas , on redirige vers la route login
-    if (!$user) {
+    if (!$user) :
+        if (isset($_SESSION['user'])) unset($_SESSION['user']);
         header('location:' . PUBLIC_BASE_URL . '/users/login-form');
-    }
+    else:
+        //On Donne le badge
+        $_SESSION['user'] = $user;
 
-    //on redirige evrs le dashboard admin
-    header('location:' . ADMIN_BASE_URL);
+        //on redirige evrs le dashboard admin
+        header('location:' . ADMIN_BASE_URL);
+
+    endif;
 }
